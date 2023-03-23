@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" this:Main.inFolderName="Shared" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="inProcessName" Type="InArgument(x:String)">
       <x:Property.Attributes>
@@ -6,12 +6,13 @@
       </x:Property.Attributes>
     </x:Property>
     <x:Property Name="outKey" Type="OutArgument(x:String)" />
+    <x:Property Name="inFolderName" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>1089,1061</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>981,1177</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="30">
@@ -86,16 +87,21 @@
       <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="400,476" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="StartJobProcess" sap:VirtualizedContainerService.HintSize="462,476" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:StartJob ArgumentsVariable="{x:Null}" NumberOfRobots="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Start Job" FolderPath="Shared" sap:VirtualizedContainerService.HintSize="338,365" sap2010:WorkflowViewState.IdRef="StartJob_1" JobPriority="Normal" ModernFolder="True" ResumeOnSameContext="False">
+    <ui:StartJob ArgumentsVariable="{x:Null}" NumberOfRobots="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Start Job" sap:VirtualizedContainerService.HintSize="400,365" sap2010:WorkflowViewState.IdRef="StartJob_1" JobPriority="Normal" ModernFolder="True" ResumeOnSameContext="False">
       <ui:StartJob.Arguments>
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:StartJob.Arguments>
+      <ui:StartJob.FolderPath>
+        <InArgument x:TypeArguments="x:String">
+          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_3">inFolderName</CSharpValue>
+        </InArgument>
+      </ui:StartJob.FolderPath>
       <ui:StartJob.Key>
         <OutArgument x:TypeArguments="x:String">
           <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">outKey</CSharpReference>
@@ -103,7 +109,7 @@
       </ui:StartJob.Key>
       <ui:StartJob.ProcessName>
         <InArgument x:TypeArguments="x:String">
-          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">inProcessName</CSharpValue>
+          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">inProcessName</CSharpValue>
         </InArgument>
       </ui:StartJob.ProcessName>
     </ui:StartJob>
